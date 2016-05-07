@@ -12,19 +12,19 @@ cur = conn.cursor()
 cur.execute('CREATE TABLE IF NOT EXISTS sensors (x TEXT, door TEXT, hum TEXT, temp TEXT)')
 
 while True:
-    shit = list()    
+    stuff = list()    
     c = Client(token='<insert your relayr token here>')
     dev = c.get_device(id='<insert your relayr device id here>')
     def mqtt_callback(topic, payload):
         payvar = '%s' % (payload)
-        shit.append(payvar)
+        stuff.append(payvar)
     stream = MqttStream(mqtt_callback, [dev])
     stream.start()
     time.sleep(3)
     x = datetime.datetime.now()
     print x
-    if shit[0] == None : break
-    payvar = shit[0]
+    #if stuff[0] == None : break
+    payvar = stuff[0]
     try: js = json.loads(payvar)
     except: js = None
     door = js["readings"][0]["value"]
