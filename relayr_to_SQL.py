@@ -11,6 +11,7 @@ cur = conn.cursor()
 #cur.execute('DROP TABLE IF EXISTS sensors')
 cur.execute('CREATE TABLE IF NOT EXISTS sensors (x TEXT, door TEXT, hum TEXT, temp TEXT)')
 
+# works most of the time but sometimes this gives error messages... still needs some fixing
 while True:
     stuff = list()    
     c = Client(token='<insert your relayr token here>')
@@ -23,6 +24,7 @@ while True:
     time.sleep(3)
     x = datetime.datetime.now()
     print x
+    #there is an erro with the stuff[0] from time to time. I thought the line commented below helped but error still occures occasionally
     #if stuff[0] == None : break
     payvar = stuff[0]
     try: js = json.loads(payvar)
